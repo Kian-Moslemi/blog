@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load   static custom %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+<h2>results: {{query}}</h2>
+    {% for article in results %}
+    	<div class="card-columns listfeaturedtag">
+		<div class="card">
+			<div class="row">
+				<div class="col-md-5 wrapthumbnail">
+					<a href="/{{article.slug}}">
+						<div class="thumbnail" style="background-image:url({{article.image.url}});">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-7">
+					<div class="card-block">
+						<h2 class="card-title"><a href="/{{article.slug}}">{{article.title}}</a></h2>
+						{{article.created|new}}
+						<h4 class="card-text">{{article.content|truncatewords:20}}</h4>
+                        	<div class="metafooter">
+							<div class="wrapfooter">
+								<span class="author-meta">
+								<span class="dot"></span>edited: {{article.edited}}<span class="post-read"></span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        </div>
+        {% empty %}
+            <li>nothing match to your search</li>
+    {% endfor %}    
+    {% endblock content %}     
+</body>
+</html>

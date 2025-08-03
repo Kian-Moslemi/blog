@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static custom %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    {% block content %}
+    {% for i in articles %}
+	<div class="card-columns listfeaturedtag">
+		<!-- begin post -->
+		<div class="card">
+			<div class="row">
+				<div class="col-md-5 wrapthumbnail">
+					<a href="/{{i.slug}}">
+						<div class="thumbnail" style="background-image:url({{i.image.url}});">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-7">
+					<div class="card-block">
+						<h2 class="card-title"><a href="/{{i.slug}}">{{i.title}}</a></h2>
+						{{i.created|new}}
+						<h4 class="card-text">{{i.content|truncatewords:20}}</h4>
+						<div class="metafooter">
+							<div class="wrapfooter">
+								<span class="meta-footer-thumb">
+								<a href="{% url 'author_detail' id=i.id slug=i.slug %}"><img class="author-thumb" src="{% static 'assets/img/prof.png' %}" alt="Sal"></a>
+								</span>
+								<span class="author-meta">
+								<span class="post-name"><a href="{% url 'author_detail' id=i.id slug=i.slug %}">{{i.author}}</a></span><br/>
+								<span class="post-date">created: {{i.created}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        </div>
+</section>
+		<!-- end post -->
+ 
+
+    {% endfor %}  
+    
+    {% endblock content %}
+</body>
+</html>

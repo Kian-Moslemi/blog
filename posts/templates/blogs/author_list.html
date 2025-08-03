@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load   static custom %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+        {% for i in articles %}
+	<div class="card-columns listfeaturedtag">
+		<div class="card">
+			<div class="row">
+				<div class="col-md-5 wrapthumbnail">
+					<a href="/{{i.slug}}">
+						<div class="thumbnail" style="background-image:url({{i.image.url}});">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-7">
+					<div class="card-block">
+						<h2 class="card-title"><a href="/{{i.slug}}">{{i.title}}</a></h2>
+						{{i.created|new}}
+						<h4 class="card-text">{{i.content|truncatewords:20}}</h4>
+                        	<div class="metafooter">
+							<div class="wrapfooter">
+								<span class="author-meta">
+								<span class="dot"></span>edited: {{i.edited}}<span class="post-read"></span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        </div>
+        {% empty %}
+            <p>nothing to read</p><br>
+    {% endfor %}
+    <a href="/authors">Back</a>
+    {% endblock content %}     
+</body>
+</html>

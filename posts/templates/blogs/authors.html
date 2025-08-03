@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    {% for i in authors %}
+        <div class="metafooter">
+			<div class="wrapfooter">
+				<span class="meta-footer-thumb">
+				<a href="/authors/{{i.username}}"><img class="author-thumb" src="{% static 'assets/img/prof.png' %}" alt="Sal"></a>
+				</span>
+				<span class="author-meta">
+				<span class="post-name"><a href="/authors/{{i.username}}">{{i.username}}</a></span><br/>
+			</div>
+		</div>  
+    {% endfor %}
+{% endblock content %}     
+</body>
+</html>

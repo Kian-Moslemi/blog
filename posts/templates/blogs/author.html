@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Document</title>
+
+</head>
+<body>
+
+{% block content %}
+	
+	
+<!-- Begin Top Author Page
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="mainheading">
+				<div class="row post-top-meta authorpage">
+					<div class="col-md-10 col-xs-12">
+						<h1>{{author.author}}</h1>
+						<span class="author-description">Hi I am {{author.author}} if you intrested about my post you can click on post</span>
+						<div class="sociallinks"><a target="_blank" href="https://google.com"><i class="fa fa-google-plus"></i></a></div>
+					</div>
+					<div class="col-md-2 col-xs-12">
+						<img class="author-thumb" src="{% static 'assets/img/prof.png' %}" alt="Sal">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Top Author Meta
+================================================== -->
+
+<!-- Begin Author Posts
+================================================== -->
+<div class="graybg authorpage">
+	<div class="container">
+		<div class="listrecent listrelated">
+
+				<!-- begin post -->
+				<div class="authorpostbox">
+					<div class="card">
+						<a href="/{{author.slug}}">
+						<img class="img-fluid img-thumb" src="{{author.image.url}}" alt="">
+						</a>
+						<div class="card-block">
+							<h2 class="card-title"><a href="/{{author.slug}}">{{author.title}}</a></h2>
+              <h4 class="card-text">{{author.content|truncatewords:20}}.</h4>
+            	<div class="metafooter">
+								<div class="wrapfooter">
+									<span class="meta-footer-thumb">
+									<a href="/authors"><img class="author-thumb" src="{% static 'assets/img/prof.png' %}" alt="Sal"></a>
+									</span>
+									<span class="author-meta">
+									<span class="post-name"><a href="/authors">{{author.author}}</a></span><br/>
+									<span class="post-date">{{author.created}}</span><span class="dot"></span><span class="post-read"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end post -->
+
+{% endblock content %}
+
+</body>
+</html>
